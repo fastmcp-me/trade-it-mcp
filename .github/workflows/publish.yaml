@@ -28,8 +28,8 @@ jobs:
 
       - name: Authenticate to MCP Registry
         run: |
-          echo "${{ secrets.MCP_PRIVATE_KEY_B64 }}" | base64 --decode > key.pem
-          ./mcp-publisher login http --domain ${{ env.MCP_SERVER_DOMAIN }} --private-key-file key.pem
+          echo "${{ secrets.MCP_PUBLISH_KEY }}" | base64 --decode > key.pem
+          ./mcp-publisher login http --domain ${{ vars.MCP_SERVER_DOMAIN }} --private-key-file key.pem
 
       - name: Publish server to MCP Registry
         run: ./mcp-publisher publish
